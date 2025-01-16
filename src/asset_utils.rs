@@ -1,4 +1,4 @@
-use crate::instance_utils::{parse_instances, RBXInstance};
+use rbx_dom_weak::{DomViewer, ViewedInstance};
 use serde::Deserialize;
 use std::io::Cursor;
 
@@ -26,7 +26,7 @@ pub async fn get_asset_download_url(asset_id: &str) -> Result<String, String> {
     Ok(asset.locations.into_iter().nth(0).unwrap().location)
 }
 
-pub async fn download_asset(asset_id: &str) -> RBXInstance {
+pub async fn download_asset(asset_id: &str) -> ViewedInstance {
     let url = get_asset_download_url(asset_id).await.unwrap();
     let response = reqwest::get(url).await.unwrap();
 
@@ -34,6 +34,7 @@ pub async fn download_asset(asset_id: &str) -> RBXInstance {
     let cursor = Cursor::new(bytes);
 
     let dom = rbx_binary::from_reader(cursor).unwrap();
-
-    parse_instances(dom)
+    let mut dom_viewer = DomViewer::new();
+    
+    dom_viewer.view(&dom)
 }
