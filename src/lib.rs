@@ -1,5 +1,6 @@
 mod utils;
 mod asset_utils;
+mod instance_utils;
 
 use crate::asset_utils::download_asset;
 pub use utils::set_panic_hook;
@@ -11,8 +12,8 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub async fn parse_asset(asset_id: &str) -> String {
+pub async fn parse_asset(asset_id: &str) -> JsValue {
     let response = download_asset(asset_id);
 
-    response.await.unwrap().locations.into_iter().nth(0).unwrap().location
+    serde_wasm_bindgen::to_value(&response.await).unwrap()
 }

@@ -12,15 +12,14 @@ default = ["console_error_panic_hook"]
 
 [dependencies]
 wasm-bindgen = "0.2.99"
-
-# The `console_error_panic_hook` crate provides better debugging of panics by
-# logging them with `console.error`. This is great for development, but requires
-# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
-# code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
 reqwest = { version = "0.12.12", features = ["json"] }
 wasm-bindgen-futures = "0.4.49"
 serde = { version = "1.0.217", features = ["derive"] }
+rbx_binary = { path = "rbx_dom/rbx_binary" }
+rbx_dom_weak = { path = "rbx_dom/rbx_dom_weak" }
+getrandom = { version = "0.2.15", features = ["js"] }
+serde-wasm-bindgen = "0.6.5"
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.49"
@@ -30,5 +29,4 @@ wasm-bindgen-test = "0.3.49"
 wasm-opt = ["-O", "--enable-mutable-globals"]
 
 [profile.release]
-# Tell `rustc` to optimize for small code size.
 opt-level = "s"
