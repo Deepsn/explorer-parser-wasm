@@ -67,6 +67,10 @@ wasm-pack publish
   for logging panic messages to the developer console.
 * `LICENSE-APACHE` and `LICENSE-MIT`: most Rust projects are licensed this way, so these are included for you
 
+## Attributions
+
+* [rbx-dom/rbx_binary](https://github.com/rojo-rbx/rbx-dom/tree/master/rbx_binary) 
+
 ## License
 
 * MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
