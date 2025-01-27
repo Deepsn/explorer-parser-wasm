@@ -18,7 +18,7 @@ wasm-bindgen-futures = "0.4.49"
 serde = { version = "1.0.217", features = ["derive"] }
 rbx_binary = { path = "rbx_dom/rbx_binary" }
 rbx_dom_weak = { path = "rbx_dom/rbx_dom_weak" }
-getrandom = { version = "0.2.15", features = ["js"] }
+getrandom = { version = "0.3.0", features = ["js"] }
 serde-wasm-bindgen = "0.6.5"
 
 [dev-dependencies]
